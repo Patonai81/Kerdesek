@@ -16,9 +16,7 @@ public class TimePeriodArrayList<E extends XItem> extends ArrayList<E> {
      */
 
     public <F extends LocalDate> List<E> period(F from, F to) {
-        return stream().filter(item -> {
-            return (!to.isBefore(item.from) && !from.isAfter(item.to));
-        }).collect(Collectors.toList());
+        return null;
     }
 
     /**
@@ -28,7 +26,7 @@ public class TimePeriodArrayList<E extends XItem> extends ArrayList<E> {
      * Az input listában megkapott XItemConfig objektum meghatároz egy period_max és egy hozzá tartozó config_value értéket.
      * Tekintsd a lista elemeidet egy képzeletbeli dolgozónak, aki a 'from' Localdate dátummal lépett be a céghez.
      * Minden dolgozót fel kell paraméterezni a config_value értékkel, amit az input listában megkapsz.
-     * A dolgozód a belépése által eltelt hónapokat(from érték összevetve a mai dátummal) alapján állítsd be rá a configurációs listában megkapott config_max értéket, úgy
+     * A dolgozód a belépése óta eltelt hónapokat(from érték összevetve a mai dátummal) alapján állítsd be rá a configurációs listában megkapott config_max értéket, úgy
      * hogy a configurációs listában levő legnagyobb már elért számú hónaphoz tartozó szöveget állítsd be számára az ő config_value értékét.
      *
      * Tehát ha
@@ -45,11 +43,7 @@ public class TimePeriodArrayList<E extends XItem> extends ArrayList<E> {
      */
 
     public List<E> config(List<XItemConfig> config) {
-        TreeMap<Integer, String> configMap = config.stream().collect(Collectors.toMap(XItemConfig::getPeriod_max, XItemConfig::getConfigValue, (o1, o2) -> o1, TreeMap::new));
-        return stream().map( item -> {
-            item.setConfigValue(configMap.floorEntry((int) ChronoUnit.MONTHS.between(item.from, item.to)).getValue());
-            return item;
-        }).toList();
+        return null;
     }
 
 
